@@ -1,22 +1,18 @@
 #
-# $Id: mindi.spec 722 2006-07-28 23:53:46Z bruno $
+# $Id: mindi.spec 936 2006-11-16 01:17:27Z bruno $
 #
-%define rel     1
-%define release %mkrel %{rel}
-# Official version. We keep 2.09 for update purposes
-# Will be solved with 3.0
-%define ver		1.0.9
-
 Summary:	Mindi creates emergency boot disks/CDs using your kernel, tools and modules
 Name:		mindi
-Version:	1.09
-Release:	%{release}
+Version:	1.22
+Packager:	Bruno Cornec <bcornec@mandriva.org>
+Release:	%mkrel 1
 License:	GPL
 Group:		Archiving/Backup
 Url:		http://www.mondorescue.org
-Source:		ftp://ftp.mondorescue.org/src/%{name}-%{ver}.tar.bz2
-BuildRoot:	%{_tmppath}/%{name}-%{ver}-%{release}-root-%(id -u -n)
-Requires:	bzip2 >= 0.9, mkisofs, ncurses, binutils, gawk, dosfstools , which, grep >= 2.5
+Source:		ftp://ftp.mondorescue.org/src/%{name}-%{version}.tar.bz2
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(id -u -n)
+ExcludeArch: ppc
+Requires:	bzip2 >= 0.9, mkisofs, ncurses, binutils, gawk, dosfstools, mindi-busybox , which, grep >= 2.5
 
 # Not on all systems
 #Conflicts:	bonnie++
@@ -24,12 +20,11 @@ Requires:	bzip2 >= 0.9, mkisofs, ncurses, binutils, gawk, dosfstools , which, gr
 %description
 Mindi takes your kernel, modules, tools and libraries, and puts them on N
 bootable disks (or 1 bootable CD image). You may then boot from the disks/CD
-and do system maintenance - e.g.  partitions, backup/restore data,
+and do system maintenance - e.g. format partitions, backup/restore data,
 verify packages, etc.
 
 %prep
-%setup -n %name-%{ver}
-echo %{version} > VERSION
+%setup -n %name-%{version}
 
 %build
 %ifarch ia64
@@ -41,19 +36,23 @@ echo %{version} > VERSION
 %{__rm}  -rf $RPM_BUILD_ROOT
 export DONT_RELINK=1
 
-export PREFIX=${RPM_BUILD_ROOT}%{_exec_prefix}
-export CONFDIR=${RPM_BUILD_ROOT}%{_sysconfdir}
+export HEAD=${RPM_BUILD_ROOT}
+export PREFIX=%{_exec_prefix}
+# Bug on x86_64 on _sysconfdir on rhel4 at least
+%ifarch x86_64
+export CONFDIR=/etc
+%else
+export CONFDIR=%{_sysconfdir}
+%endif
+export MANDIR=%{_mandir}
+export DOCDIR=%{_docdir}
+export LIBDIR=%{_libdir}
 export RPMBUILDMINDI="true"
 
 ./install.sh
 
 %clean
 %{__rm} -rf $RPM_BUILD_ROOT
-
-%post
-if [ -f /usr/local/sbin/mindi ]; then
-	echo "WARNING: /usr/local/sbin/mindi exists. You should probably remove your manual mindi installation !"
-fi
 
 %files
 %defattr(-,root,root)
@@ -63,3 +62,4 @@ fi
 %{_libdir}/mindi
 %{_sbindir}/*
 
+%changelog
