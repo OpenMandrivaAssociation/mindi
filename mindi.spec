@@ -3,7 +3,7 @@
 #
 Summary:	Mindi creates emergency boot disks/CDs using your kernel, tools and modules
 Name:		mindi
-Version:	1.22
+Version:	1.23
 Packager:	Bruno Cornec <bcornec@mandriva.org>
 Release:	%mkrel 1
 License:	GPL
