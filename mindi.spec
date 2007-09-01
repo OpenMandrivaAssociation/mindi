@@ -46,7 +46,7 @@ export CACHEDIR=%{_var}/cache/%{name}
 export PKGBUILDMINDI="true"
 
 ./install.sh
-%{__rm} -rf %{_docdir}/%{name}-%{version}
+%{__rm} -rf $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}
 
 %clean
 %{__rm} -rf $RPM_BUILD_ROOT
