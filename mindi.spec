@@ -1,9 +1,9 @@
 #
-# $Id: mindi.spec 936 2006-11-16 01:17:27Z bruno $
+# $Id: mindi.spec 1510 2007-06-20 10:12:34Z bruno $
 #
 Summary:	Mindi creates emergency boot disks/CDs using your kernel, tools and modules
 Name:		mindi
-Version:	1.23
+Version:	1.24
 Packager:	Bruno Cornec <bcornec@mandriva.org>
 Release:	%mkrel 1
 License:	GPL
@@ -12,7 +12,7 @@ Url:		http://www.mondorescue.org
 Source:		ftp://ftp.mondorescue.org/src/%{name}-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(id -u -n)
 ExcludeArch: ppc
-Requires:	bzip2 >= 0.9, mkisofs, ncurses, binutils, gawk, dosfstools, mindi-busybox , which, grep >= 2.5
+Requires:	bzip2 >= 0.9, mkisofs, ncurses, binutils, gawk, dosfstools, mindi-busybox, parted , which, grep >= 2.5
 
 # Not on all systems
 #Conflicts:	bonnie++
@@ -38,16 +38,12 @@ export DONT_RELINK=1
 
 export HEAD=${RPM_BUILD_ROOT}
 export PREFIX=%{_exec_prefix}
-# Bug on x86_64 on _sysconfdir on rhel4 at least
-%ifarch x86_64
-export CONFDIR=/etc
-%else
 export CONFDIR=%{_sysconfdir}
-%endif
 export MANDIR=%{_mandir}
 export DOCDIR=%{_docdir}
 export LIBDIR=%{_libdir}
-export RPMBUILDMINDI="true"
+export CACHEDIR=%{_var}/cache/%{name}
+export PKGBUILDMINDI="true"
 
 ./install.sh
 
@@ -56,10 +52,11 @@ export RPMBUILDMINDI="true"
 
 %files
 %defattr(-,root,root)
-%config(noreplace) %{_sysconfdir}/mindi/deplist.txt 
+%config(noreplace) %{_sysconfdir}/%{name}
 %doc ChangeLog INSTALL COPYING README TODO README.ia64 README.pxe README.busybox svn.log
 %{_mandir}/man8/*
-%{_libdir}/mindi
+%{_libdir}/%{name}
 %{_sbindir}/*
+%{_var}/cache/%{name}
 
 %changelog
