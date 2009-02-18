@@ -2,15 +2,15 @@
 #
 Summary:	Mindi creates emergency boot disks/CDs using your kernel, tools and modules
 Name:		mindi
-Version:	2.0.4
+Version:	2.0.6
 Packager:	Bruno Cornec <bcornec@mandriva.org>
-Release:	%mkrel 3
+Release:	%mkrel 1
 License:	GPL
 Group:		Archiving/Backup
 Url:		http://www.mondorescue.org
 Source:		ftp://ftp.mondorescue.org/src/%{name}-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(id -u -n)
-Requires:	bzip2 >= 0.9, mkisofs, ncurses, binutils, gawk, dosfstools, mindi-busybox, parted, perl, mtools, which, grep >= 2.5
+Requires:	bzip2 >= 0.9, mkisofs, ncurses, binutils, gawk, dosfstools, mindi-busybox >= 1.7.3, parted, perl, mtools, which, grep >= 2.5
 ExcludeArch: ppc
 
 # Not on all systems
