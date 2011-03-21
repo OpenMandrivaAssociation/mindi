@@ -3,7 +3,7 @@
 #
 Summary:	Mindi creates emergency boot disks/CDs using your kernel, tools and modules
 Name:		mindi
-Version:	2.0.7.5
+Version:	2.0.7.6
 Release:	%mkrel 1
 License:	GPL
 Group:		Archiving/Backup
