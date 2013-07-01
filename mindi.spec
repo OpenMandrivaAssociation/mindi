@@ -1,7 +1,7 @@
 #
 # $Id: mindi.spec 1866 2008-01-16 15:29:04Z bruno $
 #
-Summary:	Mindi creates emergency boot disks/CDs using your kernel, tools and modules
+Summary:	Creates emergency boot disks/CDs using your kernel, tools and modules
 Name:		mindi
 Version:	2.1.1
 Release:	%mkrel 1
