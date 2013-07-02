@@ -4,14 +4,13 @@
 Summary:	Creates emergency boot disks/CDs using your kernel, tools and modules
 Name:		mindi
 Version:	2.1.1
-Release:	%mkrel 1
+Release:	2
 License:	GPL
 Group:		Archiving/Backup
 Url:		http://www.mondorescue.org
 Source:		ftp://ftp.mondorescue.org/src/%{name}-%{version}.tar.gz
 # Not yet possible as busybox is a binary that should go alongside
 # BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(id -u -n)
 Requires:	bzip2 >= 0.9, mkisofs, ncurses, binutils, gawk, dosfstools, mindi-busybox >= 1.7.3, parted, perl, mtools, which, grep >= 2.5
 ExcludeArch:	ppc
  
@@ -30,7 +29,7 @@ verify packages, etc.
 %build
 
 %install
-rm  -rf $RPM_BUILD_ROOT
+rm  -rf %{buildroot}
 export DONT_RELINK=1
 
 export HEAD=${RPM_BUILD_ROOT}
@@ -45,10 +44,8 @@ export PKGBUILDMINDI="true"
 ./install.sh
 
 %clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(-,root,root)
 %config(noreplace) %{_sysconfdir}/%{name}
 %doc ChangeLog INSTALL COPYING README TODO README.* NEWS 
 #svn.log
