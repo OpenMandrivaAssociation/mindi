@@ -13,7 +13,9 @@ Source:		ftp://ftp.mondorescue.org/src/%{name}-%{version}.tar.gz
 # BuildArch:	noarch
 Requires:	bzip2 >= 0.9, mkisofs, ncurses, binutils, gawk, dosfstools, mindi-busybox >= 1.7.3, parted, perl, mtools, which, grep >= 2.5
 ExcludeArch:	ppc
- 
+
+%define debug_package %{nil}
+
 # Not on all systems
 #Conflicts:	bonnie++
 
@@ -237,7 +239,7 @@ field sometimes (#) (severine.lombardo_at_acoss.fr/Bruno Cornec)
 - init revamped (removed unnecessary second general module loading phase, start NFS appropriately depending on PXE or simple NFS) (Andree Leidenfrost)
 - Changed module 'nfsacl' to 'nfs_acl' (Andree Leidenfrost)
 - Mindi/DiskSize is gone (Bruno Cornec)
-- useless cat, sort|uniq commands removed (Bruno Cornec/Sébastien Aperghis-Tramoni)
+- useless cat, sort|uniq commands removed (Bruno Cornec/SÃ©bastien Aperghis-Tramoni)
 - Doc cleanup (Andree Leidenfrost)
 - Bug fix for chown in install.sh (JeffS)
 - CHANGES renamed also in install.sh now (Bruno Cornec)
@@ -249,7 +251,7 @@ field sometimes (#) (severine.lombardo_at_acoss.fr/Bruno Cornec)
 with a 2.6 failsafe kernel now available) (Bruno Cornec)
 - Fix mindi for 2.6 Failsafe support (Bruno Cornec)
 - mindi now depends on grep >= 2.5 (for -m option) (Marco Puggelli/Bruno Cornec)
-- Fix a bug in LVM context for RHEL4 in GetValueFromField (Rémi Bondoin/Bruno Cornec)
+- Fix a bug in LVM context for RHEL4 in GetValueFromField (RÃ©mi Bondoin/Bruno Cornec)
 - New RPM Build environement (Bruno Cornec)
 - mindi now supports x86_64 natively (Bruno Cornec)
 - stop creating further size of floppy disks if the smaller one succeeds (Bruno Cornec)
@@ -264,14 +266,14 @@ with a 2.6 failsafe kernel now available) (Bruno Cornec)
 - -p should now work with ISO/PXE/NFS modes (Bruno Cornec)
 - relocate what was under /usr/share to /usr/lib (FHS compliance) (Bruno Cornec/Andree Leidenfrost)
 - manage non ambiguous delivery under /usr (packages) or /usr/local (tar ball) (Bruno Cornec)
-- install script rewritten and used for RPM build, with new layout (Sébastien Aperghis-Tramoni/Bruno Cornec)
+- install script rewritten and used for RPM build, with new layout (SÃ©bastien Aperghis-Tramoni/Bruno Cornec)
 - use parted2fdisk everywhere (Bruno Cornec)
 - use MONDO_LIB exported by mondoarchive instead of MONDO_HOME guessed (Bruno Cornec)
 - RPM build for fedora core 4, sles9, redhat 7.3, rhel 3/4, mandriva 2006.0, mandrake 10.2/10.1 (Bruno Cornec/Gary Granger)
 - VERSION/RELEASE Tag added (Bruno Cornec)
 - VMPlayer support
-- Code cleanup, small fixes, PXE/NFS code improvements (Wolfgang Rosenauer/Sébastien Aperghis-Tramoni/Bruno Cornec
-- New switches for PXE mode (ping & ipconf, Cf README.pxe) (Sébastien Aperghis-Tramoni/Bruno Cornec)
+- Code cleanup, small fixes, PXE/NFS code improvements (Wolfgang Rosenauer/SÃ©bastien Aperghis-Tramoni/Bruno Cornec
+- New switches for PXE mode (ping & ipconf, Cf README.pxe) (SÃ©bastien Aperghis-Tramoni/Bruno Cornec)
 - mindi-kernel added to SVN (Bruno Cornec)
 
 * Sat Nov 19 2005 Bruno Cornec <bcornec@mandriva.org> 1.05-1.20060mdk
@@ -313,7 +315,7 @@ with a 2.6 failsafe kernel now available) (Bruno Cornec)
 - catch Ctrl-Alt-Del; trigger soft reset
 - better support of SuSE 9.1
 - added mdadm to deplist.txt
-- better detection of multiple Mindis (Martin FÃ¼rstenau)
+- better detection of multiple Mindis (Martin FÃƒÂ¼rstenau)
 - don't complain if just a Mindi boot CD & not a platform for Mondo
 - updated busybox to 1.0.0pre10
 - removed uClibc
