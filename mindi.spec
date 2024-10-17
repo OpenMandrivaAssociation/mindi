@@ -7,7 +7,7 @@ Version:	3.0.2
 Release:	1
 License:	GPLv2+
 Group:		Archiving/Backup
-Url:		http://www.mondorescue.org
+Url:		https://www.mondorescue.org
 Source0:	ftp://ftp.mondorescue.org/src/%{name}-%{version}.tar.gz
 Requires:	binutils
 Requires:	dosfstools
